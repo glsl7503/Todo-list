@@ -1,5 +1,5 @@
     <div>
-      <h3 class="float-md-start mb-0">TO-DO</h3>
+      <h3 class="float-md-start mb-0" id="logo">TO-DO</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
         <a class="nav-link active" href="/">홈</a>
         <a class="nav-link" href="/todo">기능</a>
@@ -9,3 +9,10 @@
         </svg></a>
       </nav>
     </div>
+
+
+<script>
+  // logo 클릭 시 홈 디렉토리로.
+  const logo = document.getElementById("logo");
+  logo.addEventListener('click', () => window.location.href = '/');
+</script>
