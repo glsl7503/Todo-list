@@ -21,3 +21,7 @@ app.get('/', function(req, res) {
 app.get('/todo', function(req, res) {
     res.render('todo'); 
 });
+
+app.get('/sign-in', (req, res) => {
+    res.render('sign-in');
+});
