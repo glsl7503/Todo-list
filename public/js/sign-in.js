@@ -9,7 +9,7 @@ function handleSignIn(e) {
     const userId = formData.get("userId");
     const password = formData.get("password");
 
-    fetch('/sign', {
+    fetch('/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
