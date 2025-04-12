@@ -1,11 +1,11 @@
 const express = require('express');
-const sessionConfig = require('../config/session');  // 세션 설정 파일 가져오기
+const sessionConfig = require('./src/config/session');  // 세션 설정 파일 가져오기
 const path = require('path');
 
 const app = express();
 
 // DB 연결
-const connectDB = require('../config/db');
+const connectDB = require('./src/config/db');
 connectDB();
 
 // 세션 미들웨어 사용
@@ -15,11 +15,11 @@ app.use(sessionConfig);
 app.use(express.json());
 
 // 라우터 설정
-app.use('/auth', require('../routes/auth'));
-app.use('/todo', require('../routes/todo'));
+app.use('/auth', require('./src/routes/auth'));
+app.use('/todo', require('./src/routes/todo'));
 
 // 정적 파일 제공 (public 폴더 사용)
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // EJS 설정
 app.set('view engine', 'ejs');
