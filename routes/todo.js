@@ -2,18 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/Todo');
 
-router.post('/todo', async (req, res) => {
-    const { userId, text } = req.body;
+router.post('/create', async (req, res) => {
+    const userId = req.session.userId;
+    const { text } = req.body;
+
+    if (!userId) {
+        return res.status(401).json({ ok: false, message: '로그인 필요' });
+    }
 
     try {
-        const userCheck = await Todo.findOne({ userId });
-
-        if (!userCheck) {
-            return res.json({ ok: false, message: '존재하지 않는 아이디' });
-        }
-
         await Todo.create({ userId, text });
-
         return res.json({ ok: true });
     } catch (err) {
         console.error(err);

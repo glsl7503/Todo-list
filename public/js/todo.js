@@ -7,12 +7,12 @@ function addTodo() {
         alert("텍스트를 작성해주세요.");
     }
 
-    fetch("/todo", {
+    fetch("/todo/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: todoText }),
+        body: JSON.stringify({ text: todoText })
       })
         .then(res => res.json())
         .then(data => {
