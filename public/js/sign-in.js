@@ -1,3 +1,6 @@
+/**
+ * 로그인 관련 js 정적 파일 입니다.
+ */
 
 const signForm = document.getElementById("signForm");
 signForm.addEventListener('submit', handleSignIn);
@@ -9,7 +12,7 @@ function handleSignIn(e) {
     const userId = formData.get("userId");
     const password = formData.get("password");
 
-    fetch('/login', {
+    fetch('/auth/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -18,11 +21,11 @@ function handleSignIn(e) {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.ok) {
-            alert('로그인 성공');
-        } else {
-            alert('로그인 실패');
+        if (!data.ok) {
+            throw new Error(data.message);
         }
+        alert('로그인 성공');
+        window.location.href = '/todo';
     })
-    .catch(err => console.error(err));
+    .catch(err => alert(err));
 }

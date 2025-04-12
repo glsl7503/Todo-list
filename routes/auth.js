@@ -1,5 +1,6 @@
 // Express 라우터 인스턴스 생성 (모듈화된 라우팅 가능)
 const express = require('express');
+const session = require('express-session');
 const router = express.Router();
 
 // MongoDB User 모델 불러옴
@@ -14,14 +15,15 @@ router.post('/login', async (req, res) => {
         const user = await User.findOne({ userId });
 
         if (!user) {
-            return res.json({ ok: false, message: '존재하지 않는 아이디' });
+            return res.json({ ok: false, message: '존재하지 않는 아이디 입니다.' });
         }
 
         if (user.password !== password) {
-            return res.json({ ok: false, message: '비밀번호 틀림' });
+            return res.json({ ok: false, message: '패스워드를 확인 해주세요.' });
         }
 
         // 로그인 성공
+        req.session.userId = user.userId;
         res.json({ ok: true, userId: user._id });
     } catch (err) {
         console.error(err);
