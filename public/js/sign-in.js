@@ -24,7 +24,6 @@ function handleSignIn(e) {
         if (!data.ok) {
             throw new Error(data.message);
         }
-        alert('로그인 성공');
         window.location.href = '/todo';
     })
     .catch(err => alert(err));
