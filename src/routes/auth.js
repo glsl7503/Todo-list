@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');  // 컨트롤러 호출
+const authController = require('../controllers/authController');  // 컨트롤러 데이터 전달
+const validateAuth = require('../middlewares/validateAuth');   // 미들웨어 유효성 검사 
 
 // 로그인 처리
-router.post('/login', authController.login);
+router.post('/login', validateAuth.login, authController.login);
 
 // 회원가입 처리
-router.post('/signUp', authController.signUp)
+router.post('/signUp', validateAuth.signUp, authController.signUp);
 
 module.exports = router;
