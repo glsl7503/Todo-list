@@ -3,12 +3,14 @@
  */
 
 const form = document.getElementById("signForm");
-form.addEventListener("submit", signUp);
+form.addEventListener('submit', signUp);
 
 function signUp(e) {
-    e.preventDefault(); // 폼 기본 제출 막기
+    // 기본 폼 제출을 막음
+    e.preventDefault();
 
-    const formData = new FormData(signForm);
+    console.log('너 들어오니?')
+    const formData = new FormData(form);
     const userId = formData.get("userId");
     const password = formData.get("password");
     const confirmPwd = formData.get("confirmPassword");
@@ -22,12 +24,12 @@ function signUp(e) {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.error) {
+        if (!data.ok) {
             throw new Error(data.message);
         }
 
         alert("회원가입 성공");
-        return window.location.href = '/login';
+        return window.location.href = '/sign-in';
     })
     .catch(err => alert(err))
 }
