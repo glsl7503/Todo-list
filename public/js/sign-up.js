@@ -9,7 +9,6 @@ function signUp(e) {
     // 기본 폼 제출을 막음
     e.preventDefault();
 
-    console.log('너 들어오니?')
     const formData = new FormData(form);
     const userId = formData.get("userId");
     const password = formData.get("password");
