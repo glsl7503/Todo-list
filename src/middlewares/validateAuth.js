@@ -1,7 +1,7 @@
 const login = (req, res, next) => {
     const { userId, password } = req.body;
 
-    if (!userId || password) {
+    if (!userId || !password) {
         return res.status(400).json({ ok: false, message: '모든 값을 입력해주세요.'});
     }
 
