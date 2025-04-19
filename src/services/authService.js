@@ -20,6 +20,24 @@ const loginService = async (userId, password) => {
     }
 };
 
+const signUpService = async (userId, password, confirmPwd) => {
+    try {
+        const checkUserId = await User.findOne( { userId });
+
+        if (checkUserId) {
+            return { ok: false, message: '사용중인 아이디 입니다.' };
+        }
+
+        await User.create({userId, password});
+
+        return { ok: true, message: '회원가입 성공!' };
+    } catch (error) {
+        console.error(error);
+        return { ok: false, message: '서버 오류' };
+    }
+}
+
 module.exports = {
     loginService,
+    signUpService
 };

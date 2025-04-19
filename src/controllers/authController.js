@@ -20,6 +20,24 @@ const login = async (req, res) => {
     }
 };
 
+/**
+ * [회원가입] 기능
+ * @param {*} req userId, password, confirmPwd
+ * @param {*} res 
+ */
+const signUp = async (req, res) => {
+    const { userId, password, confirmPwd} = req.body;
+
+    try {
+        const result = await authService.signUpService(userId, password, confirmPwd);
+        return res.json(result)
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ ok: false, message: '서버 오류' });
+    }
+}
+
 module.exports = {
     login,
+    signUp
 };
