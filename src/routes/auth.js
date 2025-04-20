@@ -9,4 +9,7 @@ router.post('/login', validateAuth.login, authController.login);
 // 회원가입 처리
 router.post('/signUp', validateAuth.signUp, authController.signUp);
 
+// 로그아웃 처리
+router.get('/logout', authController.logout);
+
 module.exports = router;

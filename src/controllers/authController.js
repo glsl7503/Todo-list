@@ -37,7 +37,21 @@ const signUp = async (req, res) => {
     }
 }
 
+/**
+ * [로그아웃]
+ */
+const logout = async (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+        return res.status(500).json({ ok: false, message: '로그아웃 실패' });
+        }
+        res.clearCookie('connect.sid');
+        res.json({ ok: true, message: '로그아웃 완료' });
+    });
+};
+
 module.exports = {
     login,
-    signUp
+    signUp,
+    logout
 };
