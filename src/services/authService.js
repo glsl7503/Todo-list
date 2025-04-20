@@ -22,7 +22,7 @@ const loginService = async (userId, password) => {
 
 const signUpService = async (userId, password, confirmPwd) => {
     try {
-        const checkUserId = await User.findOne( { userId });
+        const checkUserId = await User.findOne({ userId });
 
         if (checkUserId) {
             return { ok: false, message: '사용중인 아이디 입니다.' };
