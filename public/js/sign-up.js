@@ -28,7 +28,7 @@ function signUp(e) {
         }
 
         alert("회원가입 성공");
-        return window.location.href = '/sign-in';
+        window.location.href = '/sign-in';
     })
     .catch(err => alert(err))
 }
