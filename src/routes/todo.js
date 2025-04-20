@@ -6,6 +6,6 @@ const todoController = require('../controllers/todoController');  // 컨트롤�
 router.post('/create', todoController.createTodo);
 
 // 할 일 목록 조회
-// router.get('/', todoController.getTodos);
+router.get('/get', todoController.getTodos);
 
 module.exports = router;
