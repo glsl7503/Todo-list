@@ -25,20 +25,20 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src', 'views'));
 
 // EJS 라우팅 설정
-app.get('/', function(req, res) {
-  res.render('index'); 
+app.get('/', (req, res) => {
+  res.render('index', { currentPath: '/' });
 });
 
-app.get('/todo', function(req, res) {
-  res.render('todo/todo'); 
+app.get('/todo', (req, res) => {
+  res.render('todo/todo', { currentPath: '/todo' });
 });
 
 app.get('/sign-in', (req, res) => {
-  res.render('auth/sign-in');
+  res.render('auth/sign-in', { currentPath: '/sign-in' });
 });
 
 app.get('/sign-up', (req, res) => {
-  res.render('auth/sign-up');
+  res.render('auth/sign-up', { currentPath: '/sign-up' });
 });
 
 // 서버 실행
