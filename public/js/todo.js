@@ -37,12 +37,12 @@ function getTodo(e) {
     }
     
     todos = data.data;
-    renderTodos();
   })
   .catch(e => {
     todos = [];
     alert("할 일 목록을 가져오는 데 실패했습니다.");
-  });
+  })
+  .finally(() => renderTodos());
 }
 
 /**
@@ -53,7 +53,7 @@ function addTodo() {
     const todoText = todoInput.value.trim();
 
     if (!todoText) {
-        alert("텍스트를 작성해주세요.");
+        return alert("텍스트를 작성해주세요.");
     }
 
     fetch("/todo/create", {
