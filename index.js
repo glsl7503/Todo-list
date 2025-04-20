@@ -8,22 +8,21 @@ const app = express();
 const connectDB = require('./src/config/db');
 connectDB();
 
-// 세션 미들웨어 사용
+// 세션 설정
 app.use(sessionConfig);
 
-// 미들웨어 설정
+// 런타임 설정
 app.use(express.json());
 
 // 라우터 설정
-app.use('/auth', require('./src/routes/auth'));
-app.use('/todo', require('./src/routes/todo'));
+require('./src/routes')(app);
 
 // 정적 파일 제공 (public 폴더 사용)
 app.use(express.static(path.join(__dirname, 'public')));
 
 // EJS 설정
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './src/views'));
+app.set('views', path.join(__dirname, 'src', 'views'));
 
 // EJS 라우팅 설정
 app.get('/', function(req, res) {
@@ -31,15 +30,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/todo', function(req, res) {
-  res.render('todo'); 
+  res.render('todo/todo'); 
 });
 
 app.get('/sign-in', (req, res) => {
-  res.render('sign-in');
+  res.render('auth/sign-in');
 });
 
 app.get('/sign-up', (req, res) => {
-  res.render('sign-up');
+  res.render('auth/sign-up');
 });
 
 // 서버 실행
