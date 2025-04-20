@@ -2,6 +2,19 @@
  * 회원가입 관련 js 정적 파일 입니다.
  */
 
+window.addEventListener('load', () => {
+  const forms = document.getElementsByClassName('validation-form');
+  Array.prototype.filter.call(forms, (form) => {
+    form.addEventListener('submit', function (event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+
 const form = document.getElementById("signForm");
 form.addEventListener('submit', signUp);
 
