@@ -9,4 +9,7 @@ router.post('/create', validateTodo.checkSession, validateTodo.checkText, todoCo
 // 할 일 목록 조회
 router.get('/get',  validateTodo.checkSession, todoController.getTodos);
 
+// 할 일 삭제
+router.delete('/delete', validateTodo.checkSession, todoController.deleteTodo);
+
 module.exports = router;

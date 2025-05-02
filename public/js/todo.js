@@ -75,6 +75,29 @@ function addTodo() {
     getTodo(); // 할 일 목록을 다시 렌더링
 }
 
+function removeTodo(id) {
+  if (!id) {
+    return alert("삭제 할 할 일이 없습니다.");
+  }
+
+  fetch("/todo/delete", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (!data.ok) {
+      throw new Error(data.message);
+    }
+    alert(data.message);
+    getTodo();
+  })
+  .catch(e => alert(e));
+}
+
 /**
  * 조회해온 list 렌더링 이벤트 함수
  * @return 
@@ -93,7 +116,7 @@ function renderTodos() {
     todoItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
     todoItem.innerHTML = `
       ${todo.text}
-      <button class="btn btn-danger btn-sm" onclick="removeTodo(${index})">삭제</button>
+      <button class="btn btn-danger btn-sm" onclick="removeTodo(${todo._id})">삭제</button>
     `;
     todoList.appendChild(todoItem);
   });

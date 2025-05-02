@@ -18,7 +18,17 @@ const createTodoService = async (userId, text) => {
     }
 };
 
+const deleteTodoService = async (userId, id) => {
+    try {
+        await Todo.deleteOne({ userId, _id: id });
+        return { ok: true };
+    } catch (err) {
+        return { ok: false, message: 'TO-DO 삭제 기능 오류' };
+    }
+};
+
 module.exports = {
     getTodoService,
-    createTodoService
+    createTodoService,
+    deleteTodoService
 };

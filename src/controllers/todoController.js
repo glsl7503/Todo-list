@@ -27,7 +27,24 @@ const createTodo = async (req, res) => {
     }
 };
 
+const deleteTodo = async (req, res) => {
+    const userId = req.session.userId;
+    const { id } = req.body;
+
+    try {
+        const result = await todoService.deleteTodoService(userId, id);
+        if (!result.ok) {
+            return res.json(result);
+        }
+
+        return res.json({ ok: true, message: '삭제 성공' });
+    } catch (err) {
+        return res.status(500).json({ ok: false, message: '서버 오류' });
+    }
+}
+
 module.exports = {
     getTodos,
-    createTodo
+    createTodo,
+    deleteTodo
 };
