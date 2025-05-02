@@ -5,8 +5,11 @@
 ---
 ## ▶ 개발 환경
 `Node.js`: v22.14.0
-`npm`: v10.9.2  
+
+`npm`: v10.9.2
+
 `MongoDB`: v8.0.6 (community edition)
+
 `mongosh`: v2.4.2
 
 ---
