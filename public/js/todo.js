@@ -104,19 +104,19 @@ function removeTodo(id) {
  */
 function renderTodos() {
   const todoList = document.getElementById("todoList");
-  todoList.innerHTML = ""; // 기존 목록 초기화
+  todoList.innerHTML = "";
 
   if (!todos || todos.length === 0) {
     todoList.innerHTML = `<li class="list-group-item">등록된 할 일이 없습니다.</li>`;
     return;
   }
 
-  todos.forEach((todo, index) => {
+  todos.forEach((todo) => {
     const todoItem = document.createElement("li");
     todoItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
     todoItem.innerHTML = `
       ${todo.text}
-      <button class="btn btn-danger btn-sm" onclick="removeTodo(${todo._id})">삭제</button>
+      <button class="btn btn-danger btn-sm" onclick="removeTodo('${todo._id}')">삭제</button>
     `;
     todoList.appendChild(todoItem);
   });
